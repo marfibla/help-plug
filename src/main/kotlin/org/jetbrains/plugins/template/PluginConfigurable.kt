@@ -8,40 +8,50 @@ import javax.swing.JPanel
 
 class PluginConfigurable : Configurable {
 
-    // Creamos dos cajas de texto visuales
+    // 1. Creem una caixa de text visual per a cadascuna de les teves 4 variables
     private val cajaPuntoYComa = JBTextField()
-    private val cajaParentesis = JBTextField()
+    private val cajaParentesisCerrar = JBTextField()
+    private val cajaCorxeteCerrar = JBTextField()
+    private val cajaClaudatorCerrar = JBTextField()
 
-    // Este es el nombre que saldrá en el menú de la izquierda en los Settings
+    // Aquest és el nom que sortirà al menú de l'esquerra als Settings
     override fun getDisplayName(): String = "Mensajes Amables"
 
-    // Aquí dibujamos el formulario
+    // 2. Aquí dibuixem el formulari amb TOTES les caixes
     override fun createComponent(): JComponent {
         return FormBuilder.createFormBuilder()
             .addLabeledComponent("Mensaje si falta punto y coma (;): ", cajaPuntoYComa)
-            .addLabeledComponent("Mensaje si falta paréntesis (): ", cajaParentesis)
-            .addComponentFillVertically(JPanel(), 0) // Empuja todo hacia arriba
+            .addLabeledComponent("Mensaje si falta paréntesis ')': ", cajaParentesisCerrar)
+            .addLabeledComponent("Mensaje si falta corchete '}': ", cajaCorxeteCerrar)
+            .addLabeledComponent("Mensaje si falta claudátor ']': ", cajaClaudatorCerrar)
+            .addComponentFillVertically(JPanel(), 0) // Empeny tot cap amunt
             .panel
     }
 
-    // Comprueba si el usuario ha escrito algo nuevo para activar el botón "Aplicar"
+    // 3. Comprova si l'usuari ha modificat ALGUNA de les caixes
     override fun isModified(): Boolean {
         val ajustes = PluginSettings.getInstance()
         return cajaPuntoYComa.text != ajustes.mensajePuntoYComa ||
-                cajaParentesis.text != ajustes.mensajeParentesis
+                cajaParentesisCerrar.text != ajustes.mensajeParentesisCerrar ||
+                cajaCorxeteCerrar.text != ajustes.mensajeCorxeteCerrar ||
+                cajaClaudatorCerrar.text != ajustes.mensajeClaudatorCerrar
     }
 
-    // Guarda los textos cuando el usuario pulsa "OK" o "Aplicar"
+    // 4. Guarda TOTS els textos quan l'usuari prem "OK" o "Aplicar"
     override fun apply() {
         val ajustes = PluginSettings.getInstance()
         ajustes.mensajePuntoYComa = cajaPuntoYComa.text
-        ajustes.mensajeParentesis = cajaParentesis.text
+        ajustes.mensajeParentesisCerrar = cajaParentesisCerrar.text
+        ajustes.mensajeCorxeteCerrar = cajaCorxeteCerrar.text
+        ajustes.mensajeClaudatorCerrar = cajaClaudatorCerrar.text
     }
 
-    // Carga los textos al abrir la pantalla
+    // 5. Carrega TOTS els textos en obrir la pantalla de Settings
     override fun reset() {
         val ajustes = PluginSettings.getInstance()
         cajaPuntoYComa.text = ajustes.mensajePuntoYComa
-        cajaParentesis.text = ajustes.mensajeParentesis
+        cajaParentesisCerrar.text = ajustes.mensajeParentesisCerrar
+        cajaCorxeteCerrar.text = ajustes.mensajeCorxeteCerrar
+        cajaClaudatorCerrar.text = ajustes.mensajeClaudatorCerrar
     }
 }
