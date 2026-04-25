@@ -16,12 +16,17 @@ class FriendlyAnnotator : Annotator {
         var mensajeAmable = ""
         var esErrorDeLlave = false
 
+        // 1. Cargamos los ajustes guardados por el usuario
+        val ajustes = PluginSettings.getInstance()
+
         when {
             errorOriginal.contains(";") -> {
-                mensajeAmable = "¡No seas tonto, te has dejado un punto y coma! 🙄"
+                // 2. Usamos el texto personalizado de la memoria
+                mensajeAmable = ajustes.mensajePuntoYComa
             }
             errorOriginal.contains(")") -> {
-                mensajeAmable = "Te comiste un paréntesis de cierre ')'. ¡Abre y cierra! 😋"
+                // Usamos el texto personalizado del paréntesis
+                mensajeAmable = ajustes.mensajeParentesis
             }
             errorOriginal.contains("}") -> {
                 mensajeAmable = "¡Se te escapa el código! Te falta cerrar una llave '}' por aquí. 🚪"

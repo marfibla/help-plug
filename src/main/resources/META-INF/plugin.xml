@@ -10,5 +10,12 @@
         <annotator
                 language="JAVA"
                 implementationClass="org.jetbrains.plugins.template.FriendlyAnnotator"/>
+        <applicationService serviceImplementation="org.jetbrains.plugins.template.PluginSettings"/>
+
+        <applicationConfigurable
+                parentId="tools"
+                instance="org.jetbrains.plugins.template.PluginConfigurable"
+                id="org.jetbrains.plugins.template.PluginConfigurable"
+                displayName="Mensajes Amables"/>
     </extensions>
 </idea-plugin>
