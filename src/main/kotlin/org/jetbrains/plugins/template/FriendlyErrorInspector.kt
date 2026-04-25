@@ -6,14 +6,43 @@ import com.intellij.psi.*
 class FriendlyAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
 
-        // Comprobamos si el elemento que estamos leyendo es un error de código rojo
-        if (element is PsiErrorElement) {
+        if (element !is PsiErrorElement) return
 
-            // Si el error original de IntelliJ se queja del punto y coma...
-            if (element.errorDescription.contains(";")) {
+        val errorOriginal = element.errorDescription
 
-                // ¡Lanzamos tu mensaje encima!
-                holder.newAnnotation(HighlightSeverity.ERROR, "¡No seas tonto, te has dejado un punto y coma! 🙄")
+        // 🕵️ EL CHIVATO: Por si el corchete se llama distinto en esta versión
+        println("EL ERROR REAL ES: -> $errorOriginal <-")
+
+        var mensajeAmable = ""
+        var esErrorDeLlave = false
+
+        when {
+            errorOriginal.contains(";") -> {
+                mensajeAmable = "¡No seas tonto, te has dejado un punto y coma! 🙄"
+            }
+            errorOriginal.contains(")") -> {
+                mensajeAmable = "Te comiste un paréntesis de cierre ')'. ¡Abre y cierra! 😋"
+            }
+            errorOriginal.contains("}") -> {
+                mensajeAmable = "¡Se te escapa el código! Te falta cerrar una llave '}' por aquí. 🚪"
+                esErrorDeLlave = true // <-- ¡Marcamos que es la llave!
+            }
+            errorOriginal.contains("]") -> {
+                mensajeAmable = "Te dejaste un corchete ']' abierto. El array se está vaciando. 📦"
+            }
+        }
+
+        if (mensajeAmable.isNotEmpty()) {
+
+            // Solo usamos la magia de empujar al final si es la LLAVE y mide 0
+            if (esErrorDeLlave && element.textLength == 0) {
+                holder.newAnnotation(HighlightSeverity.ERROR, mensajeAmable)
+                    .range(element.textRange)
+                    .afterEndOfLine()
+                    .create()
+            } else {
+                // El corchete y los demás se pintan de forma normal en su sitio
+                holder.newAnnotation(HighlightSeverity.ERROR, mensajeAmable)
                     .range(element.textRange)
                     .create()
             }
