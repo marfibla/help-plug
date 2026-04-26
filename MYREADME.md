@@ -23,25 +23,13 @@ Bienvenido a Friendly Errors, el plugin de IntelliJ que convierte el estrés de 
 Si quieres probar el potencial de Friendly Errors, crea una clase llamada Main.java y pega este código lleno de "trampas" para que la IA y los memes entren en acción:
 Java
 
-public class Main {
+public class PruebaPlugin {
+
     public static void main(String[] args) {
-        // 1. Error de lógica: El plugin detectará este patrón visual
-        int n = 2;
-        String saludo = "Hola mundo";
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
+        char [ b = 'o';
+        int n = 3;
 
-            // 2. Error de tipos: Intentando meter un String en un int
-            // ¡Llamando a la IA para que nos explique el lío!
-            int u = "hola";
-
-            // 3. El clásico: Comillas simples vacías (Produce el meme de icon1.jpg)
-            char v = '';
-        }
-
-        // 4. ¿Te falta un punto y coma?
-        // El plugin te mostrará tu mensaje personalizado de ajustes
-        System.out.println("Adiós")
     }
+
 }
