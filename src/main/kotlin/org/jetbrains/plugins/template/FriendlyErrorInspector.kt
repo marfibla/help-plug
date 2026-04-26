@@ -75,7 +75,7 @@ class FriendlyAnnotator : Annotator {
                 .create()
         } else {
             // Anotación con globo flotante (Tooltip HTML) e imagen aleatoria
-            val urlImagen = FriendlyAnnotator::class.java.getResource("/icons/icon${(1..5).random()}.jpg")
+            val urlImagen = FriendlyAnnotator::class.java.getResource("/icon${(1..5).random()}.jpg")
 
             // Formateamos el texto de la IA para que sea compatible con HTML
             val textoIAParaHtml = mensajeFinal
