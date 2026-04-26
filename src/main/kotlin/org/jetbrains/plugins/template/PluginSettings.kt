@@ -10,11 +10,11 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 class PluginSettings : PersistentStateComponent<PluginSettings> {
 
-    // Aquí ponemos los mensajes por defecto que saldrán la primera vez
-    var mensajePuntoYComa: String = "¡No seas tonto, te has dejado un punto y coma! 🙄"
-    var mensajeParentesisCerrar: String = "Te comiste un paréntesis de cierre ')'. ¡Abre y cierra! 😋"
-    var mensajeCorxeteCerrar: String = "Te comiste un corxete de cierre '}'. ¡Abre y cierra! 😋"
-    var mensajeClaudatorCerrar: String = "Te comiste un claudator de cierre ']'. ¡Abre y cierra! 😋"
+    // Mensajes por defecto que saldrán la primera vez
+    var mensajePuntoYComa: String = "Te has dejado un punto y coma :p"
+    var mensajeParentesisCerrar: String = "Te comiste un paréntesis de cierre ')' :("
+    var mensajeCorxeteCerrar: String = "Te comiste un corchete de cierre '}' :/"
+    var mensajeClaudatorCerrar: String = "Te comiste un claudator de cierre ']'._."
 
 
     override fun getState(): PluginSettings = this

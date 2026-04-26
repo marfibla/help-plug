@@ -8,16 +8,15 @@ import javax.swing.JPanel
 
 class PluginConfigurable : Configurable {
 
-    // 1. Creem una caixa de text visual per a cadascuna de les teves 4 variables
+    // Creamos una caja de texto visual para cada variable
     private val cajaPuntoYComa = JBTextField()
     private val cajaParentesisCerrar = JBTextField()
     private val cajaCorxeteCerrar = JBTextField()
     private val cajaClaudatorCerrar = JBTextField()
 
-    // Aquest és el nom que sortirà al menú de l'esquerra als Settings
     override fun getDisplayName(): String = "Mensajes Amables"
 
-    // 2. Aquí dibuixem el formulari amb TOTES les caixes
+    // Dibujo de las cajas
     override fun createComponent(): JComponent {
         return FormBuilder.createFormBuilder()
             .addLabeledComponent("Mensaje si falta punto y coma (;): ", cajaPuntoYComa)
@@ -37,7 +36,7 @@ class PluginConfigurable : Configurable {
                 cajaClaudatorCerrar.text != ajustes.mensajeClaudatorCerrar
     }
 
-    // 4. Guarda TOTS els textos quan l'usuari prem "OK" o "Aplicar"
+    // Guarda los textos nuevos
     override fun apply() {
         val ajustes = PluginSettings.getInstance()
         ajustes.mensajePuntoYComa = cajaPuntoYComa.text
@@ -46,7 +45,7 @@ class PluginConfigurable : Configurable {
         ajustes.mensajeClaudatorCerrar = cajaClaudatorCerrar.text
     }
 
-    // 5. Carrega TOTS els textos en obrir la pantalla de Settings
+    // Carga los textos al abrir la pantalla de settings
     override fun reset() {
         val ajustes = PluginSettings.getInstance()
         cajaPuntoYComa.text = ajustes.mensajePuntoYComa
