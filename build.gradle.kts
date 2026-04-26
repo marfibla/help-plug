@@ -10,6 +10,7 @@ plugins {
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
+    implementation("com.google.genai:google-genai:1.51.0")
 
     implementation("com.google.genai:google-genai:1.51.0")
 

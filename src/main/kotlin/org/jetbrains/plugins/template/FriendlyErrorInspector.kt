@@ -32,7 +32,7 @@ class FriendlyAnnotator : Annotator {
         else {
             try {
                 // Inicializamos el cliente
-                val miApiKey = "AIzaSyAB4d9LmrRjCL7DpYueqwVuuEae2nUxnaU"
+                val miApiKey = System.getenv("GEMINI_API_KEY")
 
                 val client = Client.builder()
                     .apiKey(miApiKey)
@@ -47,14 +47,22 @@ class FriendlyAnnotator : Annotator {
                 )
 
                 val respuestaIA = response.text() ?: "Sin respuesta de la IA."
+
+                // Ho seguim imprimint a la terminal per al teu control intern
+                println("\n==================================================")
+                println("🤖 SOLUCIÓN DE LA IA PARA TU ERROR:")
+                println(respuestaIA)
+                println("==================================================\n")
+
+                // Ara a la pantalla es mostrarà l'explicació de la IA directament
                 mensajeFinal = "🤖 IA: $respuestaIA"
 
             } catch (e: Exception) {
-                // Manejo de errores de conexión con la API
+                // Si falla, et dirà EXACTAMENT per què a la terminal
                 println("\n❌ ERROR DE CONEXIÓN CON LA IA ❌")
                 println("Motivo exacto: ${e.message}")
                 e.printStackTrace()
-                mensajeFinal = "🤖 Error IA de conexión. Revisa la consola."
+                mensajeFinal = "🤖 Error IA de connexió. Revisa la consola."
             }
         }
 

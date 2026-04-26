@@ -1,21 +1,21 @@
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>Mensajes Agradables</name>
-    <vendor>TuNombre</vendor>
+<id>org.jetbrains.plugins.template</id>
+<name>Mensajes Agradables</name>
+<vendor>TuNombre</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.java</depends>
+<depends>com.intellij.modules.platform</depends>
+<depends>com.intellij.modules.java</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <annotator
-                language="JAVA"
-                implementationClass="org.jetbrains.plugins.template.FriendlyAnnotator"/>
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.PluginSettings"/>
+<extensions defaultExtensionNs="com.intellij">
+    <annotator
+            language="JAVA"
+            implementationClass="org.jetbrains.plugins.template.FriendlyAnnotator"/>
+    <applicationService serviceImplementation="org.jetbrains.plugins.template.PluginSettings"/>
 
-        <applicationConfigurable
-                parentId="tools"
-                instance="org.jetbrains.plugins.template.PluginConfigurable"
-                id="org.jetbrains.plugins.template.PluginConfigurable"
-                displayName="Mensajes Amables"/>
-    </extensions>
+    <applicationConfigurable
+            parentId="tools"
+            instance="org.jetbrains.plugins.template.PluginConfigurable"
+            id="org.jetbrains.plugins.template.PluginConfigurable"
+            displayName="Mensajes Amables"/>
+</extensions>
 </idea-plugin>
